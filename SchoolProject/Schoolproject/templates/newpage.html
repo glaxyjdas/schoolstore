@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <style>
+        button
+        {
+            background-color:yellow;
+             padding: 14px 55px;
+             margin-left=50px;
+        }
+    </style>
+    <title>Title</title>
+</head>
+
+<body style="background-color:#eaf2c1">
+{% csrf_token %}
+   <div class="container">
+    <div class="center">
+        <a href="{% url 'person_add' %}">
+<!--            <input type="submit">-->
+            <button>click here</button>
+        </a>
+    </div>
+   </div>
+</body>
+</html>

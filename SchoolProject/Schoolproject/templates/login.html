@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+     <style>
+        input[type=text],
+        input[type=password],
+        input[type=email]
+
+         {    text-align:center;
+              padding: 14px 55px;
+         }
+         input[type=submit]
+         {    text-align:center;
+              padding: 10px 50px;
+              background-color:green;
+         }
+    </style>
+    <title>login</title>
+</head>
+<h2 style="text-align:center">LOGIN</h2>
+<body style="background-color:#eaf2c1">
+<form style="text-align:center" action=" " method="post" >
+{% csrf_token %}
+ <input type="text" name="username" placeholder="Enter your UserName"><br>
+ <input type="password" name="password" placeholder="Enter your password"><br>
+    <input type="submit">
+    <a href="{% url 'register' %}">Register Here</a>
+
+</form>
+{% for msg in messages %}
+{{msg}}
+{% endfor %}
+</body>
+</html>

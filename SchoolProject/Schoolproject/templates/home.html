@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+<style>
+     input[type=submit]
+        {
+            background-color:green;
+             padding: 10px 40px;
+             margin-left=50px;
+        }
+    button{
+         background-color:red;
+             padding: 10px 40px;
+             margin-left=50px;
+    }
+</style>
+    <title>Form</title>
+
+</head>
+<body style="background-color:#eaf2c1">
+<h2> FORM </h2>
+
+<form method="post" id="personForm" data-course-url="{% url 'ajax_load_course' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+
+    <label>Materials Provide :</label>
+      <input type="checkbox" id="note" name="materials[]" value="Note Book">
+      <label for="note">Note Book</label>
+      <input type="checkbox" id="pen" name="materials[]" value="Pen">
+      <label for="pen">Pen</label>
+      <input type="checkbox" id="paper" name="materials[]" value="Exam Paper">
+      <label for="paper">Exam Paper</label> <br>
+
+    <div>
+        <div >
+            <input type="submit" value="Submit">
+            <button>logout</button>
+        </div>
+    </div>
+</form>
+    {% for msg in messages %}
+      <h3>{{msg}}</h3>
+    {% endfor %}
+  <a style="font-size:20px;" href="{% url 'home' %}">home page<a/>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>
+    $("#id_department").change(function () {
+        const url = $("#personForm").attr("data-course-url");
+        const departmentId = $(this).val();
+
+        $.ajax({
+            url: url,
+            data: {
+                'department_id': departmentId
+            },
+            success: function (data) {
+                console.log(data)
+                $("#id_course").html(data);
+                /*
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (course) {
+                    html_data += `<option value="${course.id}">${course.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_course").html(html_data);
+                    */
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
